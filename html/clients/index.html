@@ -1,8 +1,30 @@
 {% extends 'base.html' %}
-{% block intro.section %}
+{% block page.content %}
 <div class="row">
    <div class="col-lg-12">
-      <p>This is the dashboard</p>
+   {% if flag == True %}
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="panel panel-default">
+                     <div class="panel-heading">
+                        <a href="#" class="pull-right text-muted">
+                           <em class="fa"></em>
+                        </a>
+                     </div>
+                     <div class="panel-body text-center">
+                        <img src="img/user/02.jpg" alt="Contact" class="center-block img-responsive img-circle thumb64">
+                        <h4>Audrey Hunt</h4>
+                        <p>Hello, I'm a just a dummy contact in your contact list and this is my presentation text. Have fun!</p>
+                     </div>
+                     <div class="panel-footer clearfix">
+                        <div class="pull-left"><a href="#" class="btn btn-xs btn-primary">Send message</a>
+                        </div>
+                        <div class="pull-right"><a href="#" class="btn btn-xs btn-default">View</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+   {% endif %}
    </div>
 </div>
 {% endblock %}
