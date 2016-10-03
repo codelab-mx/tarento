@@ -8,16 +8,16 @@
    <meta name="author" content="codelab.mx">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
    <!--[if IE] -->
-   <link rel="shortcut icon" type="image/x-icon" href={% static "img/favicon.ico" %}>
-   <link rel="icon" type="image/png" href={% static "img/favicon.png" %}>
-   <link rel="apple-touch-icon" href={% static "img/favicon.png" %}>
-   <link href={% static "css/font-awesome.css" %} rel="stylesheet" type="text/css" />
-   <link rel="stylesheet" href={% static "app/simple-line-icons/css/simple-line-icons.css" %}>
-   <link rel="stylesheet" href={% static "app/animate.css/animate.min.css" %}>
-   <link rel="stylesheet" href={% static "app/whirl/dist/whirl.css" %}>
-   <link rel="stylesheet" href={% static "app/css/bootstrap.css" %} id="bscss">
-   <link rel="stylesheet" href={% static "app/css/app.css" %} id="maincss">
-   <script src={% static "app/js/tinymce.min.js" %}></script>
+   <link rel="shortcut icon" type="image/x-icon" href={% static "assets/img/favicon.ico" %}>
+   <link rel="icon" type="image/png" href={% static "assets/img/favicon.png" %}>
+   <link rel="apple-touch-icon" href={% static "assets/img/favicon.png" %}>
+   <link href={% static "assets/css/font-awesome.css" %} rel="stylesheet" type="text/css" />
+   <link rel="stylesheet" href={% static "assets/app/simple-line-icons/css/simple-line-icons.css" %}>
+   <link rel="stylesheet" href={% static "assets/app/animate.css/animate.min.css" %}>
+   <link rel="stylesheet" href={% static "assets/app/whirl/dist/whirl.css" %}>
+   <link rel="stylesheet" href={% static "assets/app/css/bootstrap.css" %} id="bscss">
+   <link rel="stylesheet" href={% static "assets/app/css/app.css" %} id="maincss">
+   <script src={% static "assets/app/js/tinymce.min.js" %}></script>
    <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 <body>
@@ -28,9 +28,9 @@
          <nav role="navigation" class="navbar topnavbar">
             <!-- START navbar header-->
             <div class="navbar-header">
-               <a href={% url "dashboard" %} class="navbar-brand">
+               <a href="" class="navbar-brand">
                   <div class="brand-logo">
-                     <img class="img-responsive" src={% static "img/logo-dark.svg" %} alt="Codelab" width="110">
+                     <img class="img-responsive" src={% static "assets/img/logo-dark.svg" %} alt="Codelab" width="110">
                   </div>
                   <div class="brand-logo-collapsed">
                      <img class="img-responsive" src="" alt="" width="40">
@@ -143,7 +143,7 @@
                   </li>
                   <!-- END Alert menu-->
                   <li>
-                     <a href={% url 'logout' %}>
+                     <a href="">
                         <em class="icon-notebook"></em>
                      </a>
                   </li>
@@ -186,7 +186,7 @@
                      <span>Dashboard</span>
                   </li>
                   <li>
-                     <a href={% url "dashboard" %} title="Dashboard">
+                     <a href="" title="Dashboard">
                         <em class="icon-speedometer"></em>
                         <span>Dashboard</span>
                      </a>
@@ -199,12 +199,12 @@
                      <ul id="layout" class="nav sidebar-subnav collapse">
                         <li class="sidebar-subnav-header">Ver Artículos</li>
                         <li class=" ">
-                           <a href={% url 'app_blog' %} title="Horizontal">
+                           <a href="" title="Horizontal">
                               <span>Nuevo Artículo</span>
                            </a>
                         </li>
                         <li class=" ">
-                           <a href={% url 'app_blog_new' %} title="Horizontal">
+                           <a href="" title="Horizontal">
                               <span>Nuevo Artículo</span>
                            </a>
                         </li>
@@ -218,12 +218,12 @@
                      <ul id="dashboard" class="nav sidebar-subnav collapse">
                         <li class="sidebar-subnav-header">Dashboard</li>
                         <li class=" ">
-                           <a href={% url 'app_users' %} title="Ver Usuarios">
+                           <a href="" title="Ver Usuarios">
                               <span>Ver Usuarios</span>
                            </a>
                         </li>
                         <li {% if url in request.path %}class="active"{% endif %}>
-                           <a href={% url 'app_users_new' %} title="Nuevo Usuario">
+                           <a href="" title="Nuevo Usuario">
                               <span>Nuevo Usuario</span>
                            </a>
                         </li>
@@ -247,7 +247,7 @@
                      <span data-localize="sidebar.heading.COMPONENTS"></span>
                   </li>
                   <li class=" ">
-                     <a href={% url 'logout' %} title="Cerrar Sesión">
+                     <a href="" title="Cerrar Sesión">
                         <em class="icon-logout"></em>
                         <span data-localize="sidebar.nav.DOCUMENTATION">Cerrar Sesión</span>
                      </a>
@@ -279,17 +279,17 @@
          <span><a>{code<b>lab</b>}</a> | Todos los derechos reservados © {% now "Y" %}.</span>
       </footer>
    </div>
-   <script src={% static "app/modernizr/modernizr.custom.js" %}></script>
-   <script src={% static "app/matchMedia/matchMedia.js" %}></script>
-   <script src={% static "app/jquery/dist/jquery.js" %}></script>
-   <script src={% static "app/bootstrap/dist/js/bootstrap.js" %}></script>
-   <script src={% static "app/jQuery-Storage-API/jquery.storageapi.js" %}></script>
-   <script src={% static "app/jquery.easing/js/jquery.easing.js" %}></script>
-   <script src={% static "app/animo.js/animo.js" %}></script>
-   <script src={% static "app/slimScroll/jquery.slimscroll.min.js" %}></script>
-   <script src={% static "app/screenfull/dist/screenfull.js" %}></script>
-   <script src={% static "app/jquery-localize-i18n/dist/jquery.localize.js" %}></script>
-   <script src={% static "app/js/app.js" %}></script>
+   <script src={% static "assets/app/modernizr/modernizr.custom.js" %}></script>
+   <script src={% static "assets/app/matchMedia/matchMedia.js" %}></script>
+   <script src={% static "assets/app/jquery/dist/jquery.js" %}></script>
+   <script src={% static "assets/app/bootstrap/dist/js/bootstrap.js" %}></script>
+   <script src={% static "assets/app/jQuery-Storage-API/jquery.storageapi.js" %}></script>
+   <script src={% static "assets/app/jquery.easing/js/jquery.easing.js" %}></script>
+   <script src={% static "assets/app/animo.js/animo.js" %}></script>
+   <script src={% static "assets/app/slimScroll/jquery.slimscroll.min.js" %}></script>
+   <script src={% static "assets/app/screenfull/dist/screenfull.js" %}></script>
+   <script src={% static "assets/app/jquery-localize-i18n/dist/jquery.localize.js" %}></script>
+   <script src={% static "assets/app/js/app.js" %}></script>
 </body>
 
 </html>
