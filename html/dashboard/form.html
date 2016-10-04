@@ -1,0 +1,31 @@
+{% extends 'blank.html' %}
+{% block page.content %}
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">{{ page }}</div>
+			</div>
+			<div class="panel-body">
+				<form method="POST" action="">{% csrf_token %}
+				<div class="form-group">
+					{{ form.as_p }}
+					{{ profile_form.as_p }}
+				</div>
+				<div class="panel-footer">
+					<div class="clearfix">
+						<div class="pull-left">
+							<div class="required">* Campos Requeridos</div>
+						</div>
+						<div class="pull-right">
+							<button type="submit" class="btn btn-primary">Guardar</button>
+							<input type="hidden" name="next" value="{{ next }}" />
+						</div>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block wrapper %}
+<header class="topnavbar-wrapper">
+   <nav role="navigation" class="navbar topnavbar">
+      <div class="navbar-header">
+         <a href="" class="navbar-brand">
+            <div class="brand-logo">
+               <img class="img-responsive" src={% static "img/logo-dark.svg" %} alt="Codelab" width="110">
+            </div>
+            <div class="brand-logo-collapsed">
+               <img class="img-responsive" src="" alt="" width="40">
+            </div>
+         </a>
+      </div>
+      <div class="nav-wrapper">
+         <ul class="nav navbar-nav">
+            <li>
+               <a href="#" data-trigger-resize="" data-toggle-state="aside-collapsed" class="hidden-xs">
+                  <em class="fa fa-navicon"></em>
+               </a>
+               <a href="#" data-toggle-state="aside-toggled" data-no-persist="true" class="visible-xs sidebar-toggle">
+                  <em class="fa fa-navicon"></em>
+               </a>
+            </li>
+            <li>
+               <a id="user-block-toggle" href="#user-block" data-toggle="collapse">
+                  <em class="icon-user"></em>
+               </a>
+            </li>
+            <li>
+               <a href="lock.html" title="Lock screen">
+                  <em class="icon-lock"></em>
+               </a>
+            </li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right">
+            <li class="visible-lg">
+               <a href="#" data-toggle-fullscreen="">
+                  <em class="fa fa-expand"></em>
+               </a>
+            </li>
+            <li class="dropdown dropdown-list">
+               <a href="#" data-toggle="dropdown">
+                  <em class="icon-bell"></em>
+                  <div class="label label-danger">11</div>
+               </a>
+               <ul class="dropdown-menu animated flipInX">
+                  <li>
+                     <div class="list-group">
+                        <a href="#" class="list-group-item">
+                           <div class="media-box">
+                              <div class="pull-left">
+                                 <em class="fa fa-twitter fa-2x text-info"></em>
+                              </div>
+                              <div class="media-box-body clearfix">
+                                 <p class="m0">New followers</p>
+                                 <p class="m0 text-muted">
+                                    <small>1 new follower</small>
+                                 </p>
+                              </div>
+                           </div>
+                        </a>
+                        <a href="#" class="list-group-item">
+                           <div class="media-box">
+                              <div class="pull-left">
+                                 <em class="fa fa-envelope fa-2x text-warning"></em>
+                              </div>
+                              <div class="media-box-body clearfix">
+                                 <p class="m0">New e-mails</p>
+                                 <p class="m0 text-muted">
+                                    <small>You have 10 new emails</small>
+                                 </p>
+                              </div>
+                           </div>
+                        </a>
+                        <a href="#" class="list-group-item">
+                           <div class="media-box">
+                              <div class="pull-left">
+                                 <em class="fa fa-tasks fa-2x text-success"></em>
+                              </div>
+                              <div class="media-box-body clearfix">
+                                 <p class="m0">Pending Tasks</p>
+                                 <p class="m0 text-muted">
+                                    <small>11 pending task</small>
+                                 </p>
+                              </div>
+                           </div>
+                        </a>
+                        <a href="#" class="list-group-item">
+                           <small>More notifications</small>
+                           <span class="label label-danger pull-right">14</span>
+                        </a>
+                     </div>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href={% url 'logout' %}>
+                  <em class="icon-notebook"></em>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </nav>
+</header>
+<aside class="aside">
+   <div class="aside-inner">
+      <nav data-sidebar-anyclick-close="" class="sidebar">
+         <ul class="nav">
+            <li class="has-user-block">
+               <div id="user-block" class="collapse">
+                  <div class="item user-block">
+                     <div class="user-block-picture">
+                        <div class="user-block-status">
+                           <img src="img/user/02.jpg" alt="Avatar" width="60" height="60" class="img-thumbnail img-circle">
+                           <div class="circle circle-success circle-lg"></div>
+                        </div>
+                     </div>
+                     <div class="user-block-info">
+                        <span class="user-block-name">Hola, {{ user.get_username }}</span>
+                        <span class="user-block-role">Desarrollador</span>
+                     </div>
+                  </div>
+               </div>
+            </li>
+            <li class="nav-heading ">
+               <span>Dashboard</span>
+            </li>
+            <li>
+               <a href="" title="Dashboard">
+                  <em class="icon-speedometer"></em>
+                  <span>Dashboard</span>
+               </a>
+            </li>
+            <li class=" ">
+               <a href="#layout" title="Layouts" data-toggle="collapse">
+                  <em class="icon-notebook"></em>
+                  <span>Blog</span>
+               </a>
+               <ul id="layout" class="nav sidebar-subnav collapse">
+                  <li class="sidebar-subnav-header">Ver Artículos</li>
+                  <li class=" ">
+                     <a href="" title="Horizontal">
+                        <span>Nuevo Artículo</span>
+                     </a>
+                  </li>
+                  <li class=" ">
+                     <a href="" title="Horizontal">
+                        <span>Nuevo Artículo</span>
+                     </a>
+                  </li>
+               </ul>
+            </li>
+            <li class="">
+               <a href="#dashboard" title="Dashboard" data-toggle="collapse">
+                  <em class="icon-people"></em>
+                  <span>Usuarios</span>
+               </a>
+               <ul id="dashboard" class="nav sidebar-subnav collapse">
+                  <li class="sidebar-subnav-header">Dashboard</li>
+                  <li class=" ">
+                     <a href="" title="Ver Usuarios">
+                        <span>Ver Usuarios</span>
+                     </a>
+                  </li>
+                  <li {% if url in request.path %}class="active"{% endif %}>
+                     <a href="" title="Nuevo Usuario">
+                        <span>Nuevo Usuario</span>
+                     </a>
+                  </li>
+               </ul>
+            </li>
+            <li class=" ">
+               <a href="#layout" title="Layouts" data-toggle="collapse">
+                  <em class="icon-layers"></em>
+                  <span>Layouts</span>
+               </a>
+               <ul id="layout" class="nav sidebar-subnav collapse">
+                  <li class="sidebar-subnav-header">Layouts</li>
+                  <li class=" ">
+                     <a href="dashboard_h.html" title="Horizontal">
+                        <span>Horizontal</span>
+                     </a>
+                  </li>
+               </ul>
+            </li>
+            <li class="nav-heading ">
+               <span data-localize="sidebar.heading.COMPONENTS"></span>
+            </li>
+            <li class=" ">
+               <a href={% url 'logout' %} title="Cerrar Sesión">
+                  <em class="icon-logout"></em>
+                  <span data-localize="sidebar.nav.DOCUMENTATION">Cerrar Sesión</span>
+               </a>
+            </li>
+         </ul>
+      </nav>
+   </div>
+</aside>
+<section>
+   <div class="content-wrapper">{% if btn %}<div class="btn-group pull-right"><a href='{{ btn_url }}'><button type="button" class="btn btn-default btn-sm">{{ btn }}</button></a></div>{% endif %}
+      <h3>{% if title %}{{ title }}{% else %}Dashboard{% endif %}
+         <small>{% if subtitle %}{{ subtitle }}{% else %}Home{% endif %}</small>
+      </h3>
+      {% block page.content %}
+      <div class="row">
+         <div class="col-lg-12">
+            <p>Write your rows here</p>
+         </div>
+      </div>
+      {% endblock %}
+   </div>
+</section>
+<footer>
+   <span><a>{code<b>lab</b>}</a> | Todos los derechos reservados © {% now "Y" %}.</span>
+</footer>
+{% endblock %}

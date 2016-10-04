@@ -1,0 +1,26 @@
+{% extends 'blank.html' %}
+{% load staticfiles %}
+{% block page.content %}
+<div class="container container-md">
+   <div class="row">
+      {% for object in lists %}
+      <div class="col-md-4">
+         <div class="panel b">
+            <div class="panel-body text-center">
+               <a href="#" class="link-unstyled text-primary">
+                  <em class="fa fa-5x fa-file-pdf-o mb-lg"></em>
+                  <br>
+                  <span class="h4">{{ object.title }}</span>
+                  <br>
+                  <small class="text-muted">View all →</small>
+               </a>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+     
+      {% autoescape off %}{{ contract.body }}{% endautoescape %}
+      {{ template }}
+   </div>
+</div>
+{% endblock %}

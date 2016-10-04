@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block wrapper %}
+<div class="block-center mt-xl wd-xl">
+  <div class="panel panel-dark panel-flat">
+    <div class="panel-body">
+      <a href="#">
+        <img src={% static "img/t_logo.png" %} alt="Image" class="block-center img-rounded">
+      </a>
+      <p class="text-center pv">{{ random }}</p>
+        <form method="POST" action="">{% csrf_token %}
+          <div class="form-group has-feedback">
+            {{ form.username }}
+            <span class="fa fa-user form-control-feedback text-muted"></span>
+            {{ form.username.errors }}
+          </div>
+          <div class="form-group has-feedback">
+            {{ form.password }}
+            <span class="fa fa-lock form-control-feedback text-muted"></span>
+            {{ form.password.error }}
+          </div>
+          <div class="clearfix">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Acceder</button>
+          <input type="hidden" name="next" value="{{ next }}" />
+      </form>
+      </div>
+  </div>
+  <div class="p-lg text-center">
+      <span><a href="http://codelab.mx" target="_blank">{code<b>lab</b>}</a></span>
+      <br>
+      <span>Todos los derechos reservados - &copy; {% now "Y" %}</span>
+   </div>
+</div>
+{% endblock %}
