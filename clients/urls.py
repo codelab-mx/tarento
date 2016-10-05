@@ -21,5 +21,5 @@ urlpatterns = [
     #url(r'^admin/', admin.site.urls),
     #url(r'^clients/', include('clients.urls')),
     url(r'^$', views.list_clients, name='clients_dashboard'),
-    url(r'^new/$', views.new_clients, name='add_new'),
+    url(r'^new/$', views.new_clients, name='add_new_client'),
 ]

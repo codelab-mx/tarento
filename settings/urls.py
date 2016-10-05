@@ -20,4 +20,6 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^clients/', include('clients.urls')),
+    url(r'^login/', views.login_crm, name='login'),
+    url(r'^logout/', views.logout_crm, name='logout'),
 ]
