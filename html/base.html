@@ -19,6 +19,7 @@
    <link rel="stylesheet" href={% static "css/app.css" %} id="maincss">
    <script src={% static "js/tinymce.min.js" %}></script>
    <script>tinymce.init({ selector:'textarea' });</script>
+   <link id="autoloaded-stylesheet" rel="stylesheet" href={% static "css/tarento.css" %}>
 </head>
 <body>
    <div class="wrapper" {% if bck %}style="background=url('bck')"{% endif %}>
@@ -35,6 +36,9 @@
    <script src={% static "slimScroll/jquery.slimscroll.min.js" %}></script>
    <script src={% static "screenfull/dist/screenfull.js" %}></script>
    <script src={% static "jquery-localize-i18n/dist/jquery.localize.js" %}></script>
+   <script src={% static "jquery-validation/dist/jquery.validate.js" %}></script>
+   <script src={% static "jquery.steps/build/jquery.steps.js" %}></script>
+   <script src={% static "js/demo/demo-wizard.js" %}></script>
    <script src={% static "js/app.js" %}></script>
 </body>
 </html>

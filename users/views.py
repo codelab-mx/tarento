@@ -1,4 +1,5 @@
 # -*- coding: utf-8
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User, Group
@@ -12,32 +13,33 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template import Template
 from . import forms
 from . import models
-###################
-#   Users Logic   #
-###################
+from django.views.generic import ListView
 
-#Render all the users 
-@permission_required('auth.add_user', login_url='dashboard')
-@login_required(login_url='login')
-def app_users(request):
-	title = 'Empleados'
-	subtitle = 'Usuarios registrados en el sistema'
-	page = 'Tabla de Usuarios'
-	btn = 'Nuevo Empleado'
-	btn_url = reverse('users_new')
-	groups = Group.objects.all()
-	p_list = User.objects.exclude(is_superuser=1).all()
-	paginator = Paginator(p_list, 10)
-	p = request.GET.get('p')
-	try:
-		lists = paginator.page(p)
-	except PageNotAnInteger:
-		lists = paginator.page(1)
-	except EmptyPage:
-		lists = paginator.page(paginator.num_pages)
-	return render(request, 'users/index.html', locals())
-
+##########################
+#  Render all the Users  #
+##########################
+@method_decorator(login_required(login_url='login'), name='dispatch')
+@method_decorator(permission_required('auth.add_user', login_url='home'), name='dispatch')
+class users(ListView):
+    model = User
+    paginate_by = 10
+    template_name = 'users/index.html'
+    def get_queryset(self, *args, **kwargs):
+    	qs = super(users, self).get_queryset(*args, **kwargs).exclude(is_superuser=1)
+    	return qs
+    def get_context_data(self, *args, **kwargs):
+    	context = super(users, self).get_context_data(*args, **kwargs)
+    	context["title"] = "Empleados"
+    	context["subtitle"] = "Usuarios registrados en el sistema"
+    	context["page"] = "Tabla de Usuarios"
+    	context["btn"] = "Nuevo Empleado"
+    	context["btn_url"] = reverse("users_new")
+    	return context
 	
+#######################################
+#  Register a New User in the system  #
+#######################################
+
 # Register User Form,
 @permission_required('auth.add_user', login_url='dashboard')
 @login_required (login_url='login')
@@ -48,40 +50,15 @@ def app_users_new(request):
 	btn = 'Cancelar'
 	btn_url = reverse('users')
 	form = forms.UserRegisterForm(request.POST or None)
-	profile_form = models.ProfileForm(request.POST or None)
 	if form.is_valid():
 		user = form.save(commit=False)
 		password = form.cleaned_data.get('password')
 		user.set_password(password)
-		f = profile_form.save(commit=False)
-		f.save()
 		user.save()
 		#user.groups.add(Group.objects.get(name=grupo))
 		return HttpResponseRedirect(reverse('users'))
-	return render(request, 'dashboard/form.html', locals())
+	return render(request, 'users/forms/new.html', locals())
 
-@permission_required('auth.add_user', login_url='dashboard')
-@login_required (login_url='login')
-def app_users_new(request):
-	title = 'Nuevo Empleado'
-	subtitle = 'Agregar un usuario nuevo al sistema'
-	page = 'Formulario de registro'
-	btn = 'Cancelar'
-	btn_url = reverse('users')
-	#group = Group.objects.filter(name=grupo).count()
-	#if group == 1:
-	form = forms.UserRegisterForm(request.POST or None)
-	profile_form = models.ProfileForm(request.POST or None)
-	if form.is_valid():
-		user = form.save(commit=False)
-		password = form.cleaned_data.get('password')
-		user.set_password(password)
-		f = profile_form.save(commit=False)
-		f.save()
-		user.save()
-		#user.groups.add(Group.objects.get(name=grupo))
-		return HttpResponseRedirect(reverse('users'))
-	return render(request, 'dashboard/form.html', locals())
 
 #Render user profile
 @permission_required('auth.change_user', login_url='dashboard')

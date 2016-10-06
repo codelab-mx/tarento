@@ -21,7 +21,7 @@
             </tr>
          </thead>
          <tbody>
-         	{% for object in lists %}
+         	{% for object in object_list %}
             <tr>
             	<td>{{ forloop.counter }}</td>
 				<td>
@@ -59,15 +59,13 @@
          <div class="col-lg-10">
          	<nav>
          		<ul class="pagination">
-         			{% if users.has_previous %}<li><a href="?p={{ users.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>{% endif %}
-					{% for num in users.paginator.page_range %}
-					{% ifequal num users.number %}
-					<li class="active"><a>{{ num }}</a></li>
-					{% else %}
-					<li><a href="?p={{ num }}">{{ num }}</a></li>
-					{% endifequal %} 
-					{% endfor %}
-					{% if users.has_next %}<li><a href="?p={{ users.next_page_number }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>{% endif %}
+         		{% if page_obj.has_previous %}<li><a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>{% endif %}
+               {% for page in paginator.page_range %}
+               <li {% if page == page_obj.number %}class="active"{% endif %}>
+                  <a href="?page={{ page }}">{{ page }}</a>
+               </li>
+               {% endfor %}
+					{% if page_obj.has_next %}<li><a href="?page={{ page_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>{% endif %}
                 </ul>
             </nav>
         </div>
