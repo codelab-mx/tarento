@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
-#from . import models
+from . import models
 from .forms import new_client
 from django.http import HttpResponseRedirect, HttpResponse
 from django.forms.formsets import formset_factory
-# Create your views here.
+from models import General_Clients
+import datetime
+
+
 
 def list_clients(request):
 	flag = False
@@ -17,10 +20,9 @@ def list_clients(request):
 def new_clients(request):
 	title = "Agregar Nuevo Cliente" 
 	form_1 = new_client(request.POST or None)
-	#clients = Clients()
+	model = General_Clients()
 	if form_1.is_valid():
 		f=form_1.save(commit = False)
 		f.save()
-		print "hi"
 		return HttpResponseRedirect(reverse("clients_dashboard"))
 	return render(request, 'clients/form.html', locals())
