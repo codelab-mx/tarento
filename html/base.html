@@ -7,7 +7,6 @@
    <meta name="description" content="" />
    <meta name="author" content="codelab.mx">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-   <!--[if IE] -->
    <link rel="shortcut icon" type="image/x-icon" href={% static "img/favicon.ico" %}>
    <link rel="icon" type="image/png" href={% static "img/favicon.png" %}>
    <link rel="apple-touch-icon" href={% static "img/favicon.png" %}>
@@ -15,10 +14,9 @@
    <link rel="stylesheet" href={% static "simple-line-icons/css/simple-line-icons.css" %}>
    <link rel="stylesheet" href={% static "animate.css/animate.min.css" %}>
    <link rel="stylesheet" href={% static "whirl/dist/whirl.css" %}>
+   <link rel="stylesheet" href={% static "sweetalert/dist/sweetalert.css" %}>
    <link rel="stylesheet" href={% static "css/bootstrap.css" %} id="bscss">
    <link rel="stylesheet" href={% static "css/app.css" %} id="maincss">
-   <script src={% static "js/tinymce.min.js" %}></script>
-   <script>tinymce.init({ selector:'textarea' });</script>
    <link id="autoloaded-stylesheet" rel="stylesheet" href={% static "css/tarento.css" %}>
 </head>
 <body>
@@ -39,6 +37,8 @@
    <script src={% static "jquery-validation/dist/jquery.validate.js" %}></script>
    <script src={% static "jquery.steps/build/jquery.steps.js" %}></script>
    <script src={% static "js/demo/demo-wizard.js" %}></script>
+   <script src={% static "sweetalert/dist/sweetalert.min.js" %}></script>
    <script src={% static "js/app.js" %}></script>
+   {% block js %}{% endblock %}
 </body>
 </html>
