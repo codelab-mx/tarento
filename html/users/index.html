@@ -27,7 +27,7 @@
 					<div class="user-block-picture">
 						<div class="user-block-status">
 							<img src={% static 'img/no-avatar.jpg' %} alt="Avatar" class="img-thumbnail img-circle" width="60" height="60">
-							{% if object.is_active == True %}<div class="circle circle-success circle-lg"></div>{% else %}<div class="circle circle-danger circle-lg"></div>{% endif %}
+							<div class="circle {% if object.is_active == True %}circle-success{% else %}circle-danger{% endif %} circle-lg"></div>
 						</div>
 					</div>
 				</td>
@@ -38,7 +38,7 @@
 							<li><a href={% url 'profile' object.id %}>Ver</a></li>
 							<li><a href={% url 'profile' object.id %}>Editar</a></li>
                      <li class="divider"></li>
-                     <li><a href={% url 'user_suspend' object.id %}>Suspender</a></li>
+                     <li><a href={% url 'user_suspend' object.id %}>{% if object.is_active == True %}Suspender{% else %}Habilitar{% endif %}</a></li>
 							<li><a href={% url 'user_delete' object.id %}>Eliminar</a>
 							</li>
 						</ul>

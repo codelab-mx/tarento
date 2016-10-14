@@ -1,0 +1,158 @@
+{% extends 'blank.html' %}
+{% block page.content %}
+
+            <div class="panel panel-default">
+
+
+
+{% if form_2.errors %} <div class="panel-heading" style="color:#F00">*Error en Paso 2 OJO!</div>
+{% else %}
+               <div class="panel-heading">* Requerido</div>
+{% endif %}
+               <div class="panel-body">
+                  <form id="example-vertical" enctype="multipart/form-data" method="post">
+                  {% csrf_token %}
+                    <h4>Datos de la Empresa</h4>
+                     <section>
+                        <div class="row">
+                           <div class="col-md-6 form-group"> 
+                              <label>{{ form_1.COMPANY.label }}</label>
+                              {{ form_1.COMPANY }}
+                              {{ form_1.COMPANY.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_1.NAME.label }}</label>
+                              {{ form_1.NAME }}
+                              {{ form_1.NAME.errors }}
+                           </div>
+                        </div>
+
+                        <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_1.RFC.label }}</label>
+                              {{ form_1.RFC }}
+                              {{ form_1.RFC.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_1.PHONE.label }}</label>
+                              {{ form_1.PHONE }}
+                              {{ form_1.PHONE.errors }}
+                           </div>
+                        </div>
+                           <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_1.TYPE.label }}</label>
+                              {{ form_1.TYPE }}
+                              {{ form_1.TYPE.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_1.SOURCE.label }}</label>
+                              {{ form_1.SOURCE }}
+                              {{ form_1.DATE_1 }}
+                              {{ form_1.SOURCE.errors }}
+                           </div>
+                        </div>
+                     </section>
+
+                     <h4>Contacto </h4>
+
+                     <section>
+                        <div class="row">
+                           <div class="col-md-6 form-group"> 
+                              <label>{{ form_2.CONTACT_NAME_1.label }}</label>
+                              {{ form_2.CONTACT_NAME_1 }}
+                              {{ form_2.CONTACT_NAME_1.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_2.PHONE_1.label }}</label>
+                              {{ form_2.PHONE_1 }}
+                              {{ form_2.PHONE_1.errors }}
+                           </div>
+                        </div>
+
+                        <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_2.MAIL_1.label }}</label>
+                              {{ form_2.MAIL_1 }}
+                              {{ form_2.MAIL_1.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_2.CONTACT_NAME_2.label }}</label>
+                              {{ form_2.CONTACT_NAME_2 }}
+                              {{ form_2.CONTACT_NAME_2.errors }}
+                           </div>
+                        </div>
+                           <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_2.PHONE_2.label }}</label>
+                              {{ form_2.PHONE_2 }}
+                              {{ form_2.PHONE_2.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_2.MAIL_2.label }}</label>
+                              {{ form_2.MAIL_2 }}
+                              {{ form_2.MAIL_2.errors }}
+                           </div>
+                        </div>
+                     </section>
+                     <h4>Dirección</h4>
+                     <section>
+                        <div class="row">
+                           <div class="col-md-6 form-group"> 
+                              <label>{{ form_3.STREET_NAME.label }}</label>
+                              {{ form_3.STREET_NAME }}
+                              {{ form_3.STREET_NAME.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_3.NEIGHBORHOOD.label }}</label>
+                              {{ form_3.NEIGHBORHOOD }}
+                              {{ form_3.NEIGHBORHOOD.errors }}
+                           </div>
+                        </div>
+
+                        <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_3.ZIP.label }}</label>
+                              {{ form_3.ZIP }}
+                              {{ form_3.ZIP.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_3.CITY.label }}</label>
+                              {{ form_3.CITY }}
+                              {{ form_3.CITY.errors }}
+                           </div>
+                        </div>
+                           <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_3.STATE.label }}</label>
+                              {{ form_3.STATE }}
+                              {{ form_3.STATE.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form_3.COUNTRY.label }}</label>
+                              {{ form_3.COUNTRY }}
+                              {{ form_3.COUNTRY.errors }}
+                           </div>
+                        </div>
+                     </section>
+                     <h4>Información Adicional</h4>
+                     <section>
+                        <div class="row">
+                           <div class="form-group"> 
+                              
+                              {{ form_4.DESCRIPTION }}
+
+                           </div>
+                              <div class="col-md-6 form-group">
+                              <label>{{ form_4.IMAGE.label }}</label>
+                              {{ form_4.IMAGE }}
+                              {{ form_4.IMAGE.errors }}
+                           </div>
+                           
+                        </div>
+                     </section>
+					<input type="hidden" name="next" value="{{ next }}" />
+                  </form>
+               </div>
+            </div>
+{% endblock %}

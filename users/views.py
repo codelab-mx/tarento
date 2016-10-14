@@ -29,7 +29,7 @@ class users(ListView):
     paginate_by = 10
     template_name = 'users/index.html'
     def get_queryset(self, *args, **kwargs):
-    	qs = super(users, self).get_queryset(*args, **kwargs).exclude(is_superuser=1)
+    	qs = super(users, self).get_queryset(*args, **kwargs).exclude(is_superuser=1).order_by('username')
     	return qs
     def get_context_data(self, *args, **kwargs):
     	context = super(users, self).get_context_data(*args, **kwargs)
@@ -65,7 +65,7 @@ class users_new(CreateView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 @method_decorator(permission_required('auth.delete_user', login_url='home'), name='dispatch')
 class user_delete(DeleteView):
-	template_name = "dashboard/delete_form.html"
+	template_name = "users/forms/delete.html"
 	model = User
 	def get_success_url(self):
 		return reverse("users")	
@@ -89,11 +89,22 @@ class user_delete(DeleteView):
 def user_suspend(request, pk):
 	btn = 'Cancelar'
 	btn_url = reverse('users')
-	title = 'Suspender Usuario'
-	subtitle = 'El usuario no podrá hacer uso del sistema'
-	user = User.objects.filter(id__exact=pk).exclude(is_superuser=1)
-	if (request.POST.get('is_active')):
-		status = int(request.POST.get('profile_status'))
+	object = get_object_or_404(User.objects.exclude(is_superuser=1), id=pk)
+	if object.is_active == True:
+		title = 'Suspender Usuario'
+		page = 'no podrá hacer uso del sistema'
+		subtitle = 'El usuario no podrá acceder al portal'
+		btn_sus = 'Suspender'
+		status = 0
+		bg = 'ff902b'
+	else:
+		title = 'Habilitar usuario'
+		page = 'podrá hacer uso del sistema'
+		subtitle = 'Permitir el acceso al usuario al portal'
+		btn_sus = 'Habilitar'
+		status = 1
+		bg = '3483e7'
+	if (request.POST.get('confirm')):
 		User.objects.filter(id=pk).update(is_active=status)
 		return HttpResponseRedirect(reverse('users'))
 	return render(request, 'users/forms/suspend.html', locals())
