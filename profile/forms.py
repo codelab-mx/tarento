@@ -3,8 +3,7 @@ from django import forms
 from django.contrib.auth import logout, authenticate, login, get_user_model
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
-
-#User = get_user_model()
+from . import models
 
 class UserRegisterForm(forms.ModelForm):
 	username = forms.CharField(label='@Usuario *', widget=forms.TextInput(attrs={'placeholder': 'Nombre de Usuario', 'class': 'form-control'}), validators=[RegexValidator(regex='^.{4,15}$', message='Este campo debe tener 4 a 10 carácteres', code='nomatch')])
@@ -20,8 +19,6 @@ class UserRegisterForm(forms.ModelForm):
 		return self.cleaned_data.get('first_name').title()
 	def clean_last_name(self):
 		return self.cleaned_data.get('last_name').title()
-
-
 
 class UserChangePassword(forms.ModelForm):
 	password = forms.CharField(label='Contraseña Nueva', widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class': 'form-control'}))

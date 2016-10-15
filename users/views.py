@@ -43,21 +43,23 @@ class users(ListView):
 #######################################
 #  Register a New User in the system  #
 #######################################
-@method_decorator(login_required(login_url='login'), name='dispatch')
-@method_decorator(permission_required('auth.add_user', login_url='home'), name='dispatch')
-class users_new(CreateView):
-	form_class = forms.UserRegisterForm
-	template_name = "users/forms/new.html"
-	def get_context_data(self, *args, **kwargs):
-		context = super(users_new, self).get_context_data(*args, **kwargs)
-		context["title"] = "Nuevo Empleado"
-		context["subtitle"] = "Agregar un usuario nuevo al sistema"
-		context["page"] = "Formulario de registro"
-		context["btn"] = "Cancelar"
-		context["btn_url"] = reverse("users")
-		return context
-	def get_success_url(self):
-		return reverse('users')
+@permission_required('auth.add_user', login_url='home')
+@login_required(login_url='login')
+def users_new(request):
+	title = "Nuevo Empleado"
+	subtitle = "Agregar un usuario nuevo al sistema"
+	page = "Formulario de registro"
+	btn = "Cancelar"
+	btn_url = reverse("users")
+	form = forms.UserRegisterForm(request.POST or None)
+	if form.is_valid():
+		user = form.save(commit=False)
+		password = form.cleaned_data.get('password')
+		user.set_password(password)
+		user.save()
+		#user.groups.add(Group.objects.get(name=grupo))
+		return HttpResponseRedirect(reverse('users'))
+	return render(request, 'users/forms/new.html', locals())
 
 ###################################
 #  Delete User from the database  #

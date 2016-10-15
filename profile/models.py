@@ -8,9 +8,9 @@ from django.contrib.auth.models import User
 ####################################
 class Profile(models.Model):
 	user = models.OneToOneField(User)
-	curp = models.CharField(max_length=20, unique=True, blank=True)
-	social_number = models.CharField(max_length=15, unique=True, blank=True)
-	rfc = models.CharField(max_length=15, unique=True, blank=True)
+	curp = models.CharField(max_length=20, blank=True)
+	social_number = models.CharField(max_length=15, null=True, blank=True, unique=True)
+	rfc = models.CharField(max_length=15, null=True, blank=True, unique=True)
 	birthday = models.DateField(null=True, blank=True)
 	address = models.CharField(max_length=200, blank=True)
 	phone = models.CharField(max_length=20, blank=True)
@@ -27,6 +27,18 @@ class Contact(models.Model):
 	phone = models.CharField(max_length=20, blank=True)
 	email = models.CharField(max_length=100, blank=True)
 	observations = models.CharField(max_length=250, blank=True)
+
+###############
+# Hiring data #
+###############
+class Hiring(models.Model):
+	user = models.OneToOneField(User)
+	job_position = models.CharField(max_length=100, blank=True)
+	hire_date = models.DateField(null=True, blank=True)
+	end_date = models.DateField(null=True, blank=True)
+	bank_name = models.CharField(max_length=50, blank=True)
+	clabe = models.CharField(max_length=15, blank=True)
+
 #########################
 # Model form to Profile #
 #########################
@@ -38,4 +50,9 @@ class ProfileForm(ModelForm):
 class ContactForm(ModelForm):
 	class Meta:
 		model = Contact
+		exclude = ('user',)
+
+class HiringForm(ModelForm):
+	class Meta:
+		model = Hiring
 		exclude = ('user',)

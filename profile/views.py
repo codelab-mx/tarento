@@ -38,6 +38,8 @@ def profile(request, pk):
 @permission_required('auth.change_user', login_url='users')
 @login_required (login_url='login')
 def edit_profile(request, pk):
+    title = 'Editar Perfil'
+    subtitle = 'Credenciales de Acceso'    
     btn = 'Cancelar'
     btn_url = reverse('profile', kwargs={'pk':pk})
     object = get_object_or_404(User.objects.exclude(is_superuser=1), id=pk)
@@ -46,7 +48,7 @@ def edit_profile(request, pk):
         update = form.save(commit=False)
         update.save()
         return HttpResponseRedirect(reverse('profile', kwargs={'pk':pk}))
-    return render(request, 'dashboard/form.html', locals())
+    return render(request, 'profile/forms/edit_user.html', locals())
 
 ###########################
 #   Edit Aditional data   #
@@ -54,6 +56,8 @@ def edit_profile(request, pk):
 @permission_required('auth.change_user', login_url='users')
 @login_required (login_url='login')
 def edit_data_profile(request, pk):
+    title = 'Editar Perfil'
+    subtitle = 'Información Personal'
     btn = 'Cancelar'
     btn_url = reverse('profile', kwargs={'pk':pk})
     object = get_object_or_404(User.objects.exclude(is_superuser=1), id=pk)
@@ -63,8 +67,8 @@ def edit_data_profile(request, pk):
     if form.is_valid():
         update = form.save(commit=False)
         update.save()
-        return HttpResponseRedirect(reverse('profile', kwargs={'pk':pk}))
-    return render(request, 'dashboard/form.html', locals())
+        return HttpResponseRedirect(reverse('edit_data_profile', kwargs={'pk':pk}))
+    return render(request, 'profile/forms/edit_user.html', locals())
 
 #########################
 #   Edit Contact data   #
@@ -72,6 +76,8 @@ def edit_data_profile(request, pk):
 @permission_required('auth.change_user', login_url='users')
 @login_required (login_url='login')
 def edit_contact_profile(request, pk):
+    title = 'Editar Perfil'
+    subtitle = 'Información de contacto'
     btn = 'Cancelar'
     btn_url = reverse('profile', kwargs={'pk':pk})
     object = get_object_or_404(User.objects.exclude(is_superuser=1), id=pk)
@@ -81,5 +87,25 @@ def edit_contact_profile(request, pk):
     if form.is_valid():
         update = form.save(commit=False)
         update.save()
-        return HttpResponseRedirect(reverse('profile', kwargs={'pk':pk}))
-    return render(request, 'dashboard/form.html', locals())
+        return HttpResponseRedirect(reverse('edit_contact_profile', kwargs={'pk':pk}))
+    return render(request, 'profile/forms/edit_user.html', locals())
+
+#########################
+#   Edit Hiring data   #
+#########################
+@permission_required('auth.change_user', login_url='users')
+@login_required (login_url='login')
+def edit_hiring_profile(request, pk):
+    title = 'Editar Perfil'
+    subtitle = 'Información de contacto'
+    btn = 'Cancelar'
+    btn_url = reverse('profile', kwargs={'pk':pk})
+    object = get_object_or_404(User.objects.exclude(is_superuser=1), id=pk)
+    hiring, created = models.Hiring.objects.get_or_create(user=object)
+    object = get_object_or_404(models.Hiring, user_id=pk)
+    form = models.HiringForm(request.POST or None, instance=object)
+    if form.is_valid():
+        update = form.save(commit=False)
+        update.save()
+        return HttpResponseRedirect(reverse('edit_contact_profile', kwargs={'pk':pk}))
+    return render(request, 'profile/forms/edit_user.html', locals())

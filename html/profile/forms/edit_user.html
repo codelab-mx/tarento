@@ -1,0 +1,86 @@
+{% extends 'blank.html' %}
+{% block page.content %}
+<div class="row">
+	<div class="col-md-3">
+    	<div class="panel b">
+			<div class="panel-body text-center">
+				<a href="{% url 'edit_profile' pk %}" class="link-unstyled text-primary">
+					<em class="fa fa-5x fa-user mb-lg"></em>
+					<br>
+					<span class="h4">Datos de Usuario</span>
+					<br>
+					<small class="text-muted">Nombre, Apellido, correo...</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+    	<div class="panel b">
+			<div class="panel-body text-center">
+				<a href="{% url 'edit_data_profile' pk %}" class="link-unstyled text-primary">
+					<em class="fa fa-5x fa-list-alt mb-lg"></em>
+					<br>
+					<span class="h4">Datos Personales</span>
+					<br>
+					<small class="text-muted">Información personal del empleado</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+    	<div class="panel b">
+			<div class="panel-body text-center">
+				<a href="{% url 'edit_contact_profile' pk %}" class="link-unstyled text-primary">
+					<em class="fa fa-5x fa-child mb-lg"></em>
+					<br>
+					<span class="h4">Contacto de Emergencia</span>
+					<br>
+					<small class="text-muted">Persona de contacto del empleado</small>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+    	<div class="panel b">
+			<div class="panel-body text-center">
+				<a href="{% url 'edit_hiring_profile' pk %}" class="link-unstyled text-primary">
+					<em class="fa fa-5x fa-file-text-o mb-lg"></em>
+					<br>
+					<span class="h4">Datos Laborales</span>
+					<br>
+					<small class="text-muted">Puesto, Salario, Contrato...</small>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">{{ page }}</div>
+			</div>
+			<div class="panel-body">
+				<form method="POST" action="">{% csrf_token %}
+				<div class="form-group">
+					{{ form.as_p }}
+					{{ profile_form.as_p }}
+				</div>
+				<div class="panel-footer">
+					<div class="clearfix">
+						<div class="pull-left">
+							<div class="required">* Campos Requeridos</div>
+						</div>
+						<div class="pull-right">
+							<button type="submit" class="btn btn-primary">Guardar</button>
+							<input type="hidden" name="next" value="{{ next }}" />
+						</div>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
