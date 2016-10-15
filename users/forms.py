@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 #User = get_user_model()
 
 class UserRegisterForm(forms.ModelForm):
-	username = forms.CharField(label='@Usuario *', widget=forms.TextInput(attrs={'placeholder': 'Nombre de Usuario', 'class': 'form-control'}), validators=[RegexValidator(regex='^.{4,15}$', message='Este campo debe tener 4 a 10 carácteres', code='nomatch')])
+	username = forms.CharField(label='@Usuario *', widget=forms.TextInput(attrs={'placeholder': 'Nombre de Usuario', 'class': 'form-control'}), validators=[RegexValidator(regex='^.{4,20}$', message='Este campo debe tener 4 a 20 carácteres', code='nomatch')])
 	email = forms.EmailField(label='Email*', widget=forms.TextInput(attrs={'placeholder': 'Dirección de correo electrónico', 'class': 'form-control'}))
 	first_name = forms.CharField(label='Nombre(s) *', widget=forms.TextInput(attrs={'placeholder': 'Nombre(s)', 'class': 'form-control'}))
 	last_name = forms.CharField(label='Apellido(s) *', widget=forms.TextInput(attrs={'placeholder': 'Apellido(s)', 'class': 'form-control'}))

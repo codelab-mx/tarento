@@ -22,17 +22,64 @@ from django.views.generic import ListView
 ###################
 #  User Profile   #
 ###################
-@method_decorator(login_required(login_url='login'), name='dispatch')
-@method_decorator(permission_required('auth.add_user', login_url='home'), name='dispatch')
-class profile(DetailView):
-    model = User
-    template_name = 'profile/index_profile.html'
-    def get_queryset(self, *args, **kwargs):
-    	qs = super(profile, self).get_queryset(*args, **kwargs).exclude(is_superuser=1)
-    	return qs
-    def get_context_data(self, *args, **kwargs):
-    	context = super(profile, self).get_context_data(*args, **kwargs)
-    	context["title"] = "Empleados"
-    	context["btn"] = "Editar empleado"
-    	context["btn_url"] = reverse("user_new")
-    	return context
+@permission_required('auth.change_user', login_url='users')
+@login_required (login_url='login')
+def profile(request, pk):
+    object = get_object_or_404(User.objects.exclude(is_superuser=1), id=pk)
+    title = object.username
+    subtitle = 'Perfil de usuario'
+    btn = 'Editar empleado'
+    btn_url = reverse('edit_profile', kwargs={'pk':pk})
+    return render(request, 'profile/index_profile.html', locals())
+
+###################
+#  Edit Profile   #
+###################
+@permission_required('auth.change_user', login_url='users')
+@login_required (login_url='login')
+def edit_profile(request, pk):
+    btn = 'Cancelar'
+    btn_url = reverse('profile', kwargs={'pk':pk})
+    object = get_object_or_404(User.objects.exclude(is_superuser=1), id=pk)
+    form = forms.UserRegisterForm(request.POST or None, instance=object)
+    if form.is_valid():
+        update = form.save(commit=False)
+        update.save()
+        return HttpResponseRedirect(reverse('profile', kwargs={'pk':pk}))
+    return render(request, 'dashboard/form.html', locals())
+
+###########################
+#   Edit Aditional data   #
+###########################
+@permission_required('auth.change_user', login_url='users')
+@login_required (login_url='login')
+def edit_data_profile(request, pk):
+    btn = 'Cancelar'
+    btn_url = reverse('profile', kwargs={'pk':pk})
+    object = get_object_or_404(User.objects.exclude(is_superuser=1), id=pk)
+    profile, created = models.Profile.objects.get_or_create(user=object)
+    object = get_object_or_404(models.Profile, user_id=pk)
+    form = models.ProfileForm(request.POST or None, instance=object)
+    if form.is_valid():
+        update = form.save(commit=False)
+        update.save()
+        return HttpResponseRedirect(reverse('profile', kwargs={'pk':pk}))
+    return render(request, 'dashboard/form.html', locals())
+
+#########################
+#   Edit Contact data   #
+#########################
+@permission_required('auth.change_user', login_url='users')
+@login_required (login_url='login')
+def edit_contact_profile(request, pk):
+    btn = 'Cancelar'
+    btn_url = reverse('profile', kwargs={'pk':pk})
+    object = get_object_or_404(User.objects.exclude(is_superuser=1), id=pk)
+    contact, created = models.Contact.objects.get_or_create(user=object)
+    object = get_object_or_404(models.Contact, user_id=pk)
+    form = models.ContactForm(request.POST or None, instance=object)
+    if form.is_valid():
+        update = form.save(commit=False)
+        update.save()
+        return HttpResponseRedirect(reverse('profile', kwargs={'pk':pk}))
+    return render(request, 'dashboard/form.html', locals())

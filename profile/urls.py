@@ -4,7 +4,10 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
- 	url(r'^(?P<pk>\d+)/$', views.profile.as_view(), name='profile'),
- 	#url(r'^new/$', views.users_new.as_view(), name='user_new'),
- 	#url(r'^@(?P<user_name>[-\w.]+)/$', views.app_users_view, name='users_view')
+ 	url(r'^@(?P<pk>\d+)/$', views.profile, name='profile'),
+
+
+ 	url(r'^edit/@(?P<pk>\d+)/$', views.edit_profile, name='edit_profile'),
+ 	url(r'^edit/data/@(?P<pk>\d+)/$', views.edit_data_profile, name='edit_data_profile'),
+ 	url(r'^edit/contact/@(?P<pk>\d+)/$', views.edit_contact_profile, name='edit_contact_profile'),
 ]

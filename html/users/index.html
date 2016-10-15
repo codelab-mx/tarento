@@ -36,7 +36,7 @@
             			<button aria-expanded="false" type="button" data-toggle="dropdown" class="btn btn-link dropdown-toggle" style="text-align:left">@{{ object.username }}<span class="caret"></span></button>
         				<ul role="menu" class="dropdown-menu">
 							<li><a href={% url 'profile' object.id %}>Ver</a></li>
-							<li><a href={% url 'profile' object.id %}>Editar</a></li>
+							<li><a href={% url 'edit_profile' object.id %}>Editar</a></li>
                      <li class="divider"></li>
                      <li><a href={% url 'user_suspend' object.id %}>{% if object.is_active == True %}Suspender{% else %}Habilitar{% endif %}</a></li>
 							<li><a href={% url 'user_delete' object.id %}>Eliminar</a>
