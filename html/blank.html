@@ -169,6 +169,16 @@
                         <span>Nuevo Usuario</span>
                      </a>
                   </li>
+                  <li {% if url in request.path %}class="active"{% endif %}>
+                     <a href="{% url 'contracts' %}" title="Ver Contratos">
+                        <span>Ver Contratos</span>
+                     </a>
+                  </li>
+                  <li {% if url in request.path %}class="active"{% endif %}>
+                     <a href="{% url 'new_contract' %}" title="Nuevo Contrato">
+                        <span>Nuevo Contrato</span>
+                     </a>
+                  </li>
                </ul>
             </li>
             <li class="nav-heading ">
@@ -199,6 +209,6 @@
    </div>
 </section>
 <footer>
-   <span><a>{code<b>lab</b>}</a> | Todos los derechos reservados © {% now "Y" %}.</span>
+   <span><a>Muebles Tarento</a> | Todos los derechos reservados © {% now "Y" %}.</span>
 </footer>
 {% endblock %}

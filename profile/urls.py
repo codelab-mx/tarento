@@ -11,4 +11,8 @@ urlpatterns = [
  	url(r'^edit/data/@(?P<pk>\d+)/$', views.edit_data_profile, name='edit_data_profile'),
  	url(r'^edit/contact/@(?P<pk>\d+)/$', views.edit_contact_profile, name='edit_contact_profile'),
  	url(r'^edit/hiring/@(?P<pk>\d+)/$', views.edit_hiring_profile, name='edit_hiring_profile'),
+ 	url(r'^contracts/$', views.contracts.as_view(), name='contracts'),
+ 	url(r'^contracts/new/$', views.new_contract, name='new_contract'),
+ 	url(r'^contracts/edit/@(?P<pk>\d+)/$', views.edit_contract, name='edit_contract'),
+ 	url(r'^contract/@(?P<pk>\d+)/$', views.contract, name='contract'),
 ]

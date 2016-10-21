@@ -31,7 +31,7 @@
     	<div class="panel b">
 			<div class="panel-body text-center">
 				<a href="{% url 'edit_contact_profile' pk %}" class="link-unstyled text-primary">
-					<em class="fa fa-5x fa-child mb-lg"></em>
+					<em class="fa fa-5x fa-male mb-lg"></em>
 					<br>
 					<span class="h4">Contacto de Emergencia</span>
 					<br>
@@ -63,10 +63,13 @@
 			</div>
 			<div class="panel-body">
 				<form method="POST" action="">{% csrf_token %}
+				<fieldset>
 				<div class="form-group">
-					{{ form.as_p }}
-					{{ profile_form.as_p }}
+					<div class="row">
+						{{form.as_myp}}
+					</div>
 				</div>
+				</fieldset>
 				<div class="panel-footer">
 					<div class="clearfix">
 						<div class="pull-left">

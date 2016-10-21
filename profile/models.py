@@ -3,14 +3,14 @@ from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 
-####################################
-# model to expand the user profile #
-####################################
+################
+# user profile #
+################
 class Profile(models.Model):
 	user = models.OneToOneField(User)
 	curp = models.CharField(max_length=20, blank=True)
-	social_number = models.CharField(max_length=15, null=True, blank=True, unique=True)
-	rfc = models.CharField(max_length=15, null=True, blank=True, unique=True)
+	rfc = models.CharField(max_length=15, null=True, blank=True)
+	social_number = models.CharField(max_length=15, null=True, blank=True)
 	birthday = models.DateField(null=True, blank=True)
 	address = models.CharField(max_length=200, blank=True)
 	phone = models.CharField(max_length=20, blank=True)
@@ -19,6 +19,10 @@ class Profile(models.Model):
 	gender = models.CharField(max_length=10, blank=True)
 	blood_type = models.CharField(max_length=50, blank=True)
 
+
+################
+# user contact #
+################
 class Contact(models.Model):
 	user = models.OneToOneField(User)
 	first_name = models.CharField(max_length=50, blank=True)
@@ -28,31 +32,28 @@ class Contact(models.Model):
 	email = models.CharField(max_length=100, blank=True)
 	observations = models.CharField(max_length=250, blank=True)
 
+##################
+# Contracts data #
+##################
+class Contracts(models.Model):
+	title = models.CharField(max_length=100, blank=False)
+	content = models.TextField()
+	class Meta:
+		ordering = ('id',)
+	def __unicode__ (self):
+		return self.title
+
 ###############
 # Hiring data #
 ###############
 class Hiring(models.Model):
+	#contract = models.ForeignKey(Contracts, blank=True, null=True)
 	user = models.OneToOneField(User)
 	job_position = models.CharField(max_length=100, blank=True)
 	hire_date = models.DateField(null=True, blank=True)
 	end_date = models.DateField(null=True, blank=True)
 	bank_name = models.CharField(max_length=50, blank=True)
 	clabe = models.CharField(max_length=15, blank=True)
+	def __unicode__ (self):
+		return self.user
 
-#########################
-# Model form to Profile #
-#########################
-class ProfileForm(ModelForm):
-	class Meta:
-		model = Profile
-		exclude = ('user',)
-
-class ContactForm(ModelForm):
-	class Meta:
-		model = Contact
-		exclude = ('user',)
-
-class HiringForm(ModelForm):
-	class Meta:
-		model = Hiring
-		exclude = ('user',)

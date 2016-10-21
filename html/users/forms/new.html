@@ -1,5 +1,6 @@
 {% extends 'blank.html' %}
 {% block page.content %}
+
 <div class="row">
    <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
@@ -8,9 +9,13 @@
          </div>
          <div class="panel-body">
             <form method="POST" action="">{% csrf_token %}
-            <div class="form-group">
-               {{ form.as_p }}
-            </div>
+            <fieldset>
+               <div class="form-group">
+                  <div class="row">
+                     {{ form.as_myp }}
+                  </div>
+               </div>
+            </fieldset>
             <div class="panel-footer">
                <div class="clearfix">
                   <div class="pull-left">

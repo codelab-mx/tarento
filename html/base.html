@@ -15,9 +15,11 @@
    <link rel="stylesheet" href={% static "animate.css/animate.min.css" %}>
    <link rel="stylesheet" href={% static "whirl/dist/whirl.css" %}>
    <link rel="stylesheet" href={% static "sweetalert/dist/sweetalert.css" %}>
+   <link rel="stylesheet" href={% static "bootstrap-tagsinput/dist/bootstrap-tagsinput.css" %}>
    <link rel="stylesheet" href={% static "css/bootstrap.css" %} id="bscss">
    <link rel="stylesheet" href={% static "css/app.css" %} id="maincss">
    <link id="autoloaded-stylesheet" rel="stylesheet" href={% static "css/tarento.css" %}>
+   {% block css %}{% endblock %}
 </head>
 <body>
    <div class="wrapper" {% if bck %}style="background=url('bck')"{% endif %}>
@@ -35,7 +37,16 @@
    <script src={% static "screenfull/dist/screenfull.js" %}></script>
    <script src={% static "jquery-localize-i18n/dist/jquery.localize.js" %}></script>
    <script src={% static "jquery-validation/dist/jquery.validate.js" %}></script>
+   <script src={% static "js/demo/demo-rtl.js" %}></script>
+   <script src={% static "bootstrap-filestyle/src/bootstrap-filestyle.js" %}></script>
+   <script src={% static "bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js" %}></script>
+   <script src={% static "chosen_v1.2.0/chosen.jquery.min.js" %}></script>
    <script src={% static "jquery.steps/build/jquery.step.js" %}></script>
+   <script src={% static "seiyria-bootstrap-slider/dist/bootstrap-slider.min.js" %}></script>
+   <script src={% static "jquery.inputmask/dist/jquery.inputmask.bundle.js" %}></script>
+   <script src={% static "bootstrap-wysiwyg/bootstrap-wysiwyg.js" %}></script>
+   <script src={% static "bootstrap-wysiwyg/external/jquery.hotkeys.js" %}></script>
+   <script src={% static "js/demo/demo-forms.js" %}></script>
    <script src={% static "js/demo/demo-wizard.js" %}></script>
    <script src={% static "sweetalert/dist/sweetalert.min.js" %}></script>
    <script src={% static "js/app.js" %}></script>
