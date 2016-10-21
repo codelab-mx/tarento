@@ -1,0 +1,169 @@
+{% extends 'blank.html' %}
+{% load staticfiles %}
+{% block page.content %}
+<section>
+         <!-- Page content-->
+         <div class="content-wrapper">
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="panel panel-default">
+                     <div class="panel-body text-center">
+                        <div class="pv-lg">
+                           <img src={%static "img/t_logo.png"%} alt="Contact" class="center-block img-responsive">
+                        </div>
+                        <h3 class="m0 text-bold">{{object.NAME}}</h3>
+                        <div class="mv-lg">
+                        </div>
+                        <h5 class="m0 text-bold">{{object.COMPANY}}</h5>
+                        <div class="mv-lg">
+                         
+                        </div>
+
+                     </div>
+                  </div>
+                  <div class="panel panel-default hidden-xs hidden-sm">
+                     <div class="panel-heading">
+                        <div class="panel-title text-center">Información Adicional</div>
+                     </div>
+                     <div class="panel-body">
+                        <div class="media">
+                           <div class="media-left media-middle icon-location-pin">
+                           </div>
+                           <div class="media-body pt-sm">
+                              <div class="text-bold">Dirección
+                                 <div class="text-sm text-muted">{{object.STREET_NAME}}, {{object.NEIGHBORHOOD}} {{object.ZIP}}. {{object.CITY}} {{object.STATE}}</div>
+
+                              </div>
+                           </div>
+                        </div>
+                        <div class="media">
+                           <div class="media-left media-middle icon-home">
+                           </div>
+                           <div class="media-body pt-sm">
+                              <div class="text-bold">Parque Industrial
+                                 <div class="text-sm text-muted">Benito Juarez</div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="media">
+                           <div class="media-left media-middle icon-notebook">
+                           </div>
+                           <div class="media-body pt-sm">
+                              <div class="text-bold">Requerimientos
+                                 <div class="text-sm text-muted">{{object.DESCRIPTION}}</div>
+                              </div>
+                           </div>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-8">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <div class="pull-right">
+                           <div class="btn-group">
+                              <button data-toggle="dropdown" class="btn btn-link">
+                                 <em class="fa fa-ellipsis-v fa-lg text-muted"></em>
+                              </button>
+                              <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInLeft">
+                                 <li>
+                                    <a href={% url 'delete_client' object.id %}>
+                                       <span class="icon-calendar fa-fw text-info">  Agendar Cita</span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href={% url 'edit_client' object.id %}>
+                                       <span class="icon-pencil fa-fw text-success">  Editar Cliente</span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href={% url 'delete_client' object.id %}>
+                                       <span class="icon-trash  fa-fw text-danger">  Borrar Cliente</span>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="h4 text-center">Información General</div>
+                        <div class="row pv-lg">
+                           <div class="col-lg-2"></div>
+                           <div class="col-lg-8">
+                              <form class="form-horizontal">
+                                 <div class="form-group">
+                                    <label class="col-sm-4">Nombre</label>
+                                    <div class="col-sm-6">
+                                       {{object.NAME}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-sm-4">Razón Social</label>
+                                    <div class="col-sm-6">
+                                       {{object.COMPANY}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label  class="col-sm-4">RFC</label>
+                                    <div class="col-sm-6">
+                                       {{object.RFC}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label  class="col-sm-4">Teléfono Empresarial</label>
+                                    <div class="col-sm-6">
+                                     {{object.PHONE}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label  class="col-sm-4">Tipo</label>
+                                    <div class="col-sm-6">
+                                    	{{object.TYPE}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label  class="col-sm-4">Fuente</label>
+                                    <div class="col-sm-6">
+                                       {{object.SOURCE}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label  class="col-sm-4">Persona de Contacto</label>
+                                    <div class="col-sm-6">
+                                      {{object.CONTACT_NAME_1}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-sm-4">Teléfono</label>
+                                    <div class="col-sm-6">
+                                       {{object.PHONE_1}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-sm-4">Extensión</label>
+                                    <div class="col-sm-6">
+                                       {{object.EXT_1}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="col-sm-4">Correo Electrónico</label>
+                                    <div class="col-sm-6">
+                                       {{object.MAIL_1}}
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                    </div>
+                                 </div>
+                                    </div>
+                                 </div>
+                              </form>
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+{% endblock %}

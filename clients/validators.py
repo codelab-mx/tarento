@@ -27,5 +27,10 @@ def rfc(value):
 	return
 
 
+phone = RegexValidator(regex=r'^[0-9]{10}$', message=" Este campo debe ser númerico y contar con 10 digitos")
+	
+zip_code = RegexValidator(regex=r'^[0-9]{5}$', message="Este campo debe ser númerico y contar con 5 digitos")
+
+ext = RegexValidator(regex=r'^[0-9]{0,5}$', message="Este campo debe ser númerico y contar con 5 digitos")
 
 

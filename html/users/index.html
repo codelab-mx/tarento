@@ -5,7 +5,6 @@
 <div class="col-lg-12">
 <div class="panel panel-default">
    <div class="panel-heading">{{ page }}</div>
-   <!-- START table-responsive-->
    <div class="table-responsive">
       <table id="table-ext-1" class="table table-bordered table-hover" style="margin-bottom:5em;">
          <thead>
@@ -21,14 +20,14 @@
             </tr>
          </thead>
          <tbody>
-         	{% for object in lists %}
+         	{% for object in object_list %}
             <tr>
             	<td>{{ forloop.counter }}</td>
 				<td>
 					<div class="user-block-picture">
 						<div class="user-block-status">
-							<img src={% static 'app/img/no-avatar.jpg' %} alt="Avatar" class="img-thumbnail img-circle" width="60" height="60">
-							{% if object.is_active == True %}<div class="circle circle-success circle-lg"></div>{% else %}<div class="circle circle-danger circle-lg"></div>{% endif %}
+							<img src={% static 'img/no-avatar.jpg' %} alt="Avatar" class="img-thumbnail img-circle" width="60" height="60">
+							<div class="circle {% if object.is_active == True %}circle-success{% else %}circle-danger{% endif %} circle-lg"></div>
 						</div>
 					</div>
 				</td>
@@ -36,10 +35,11 @@
             		<div class="btn-group mb-sm">
             			<button aria-expanded="false" type="button" data-toggle="dropdown" class="btn btn-link dropdown-toggle" style="text-align:left">@{{ object.username }}<span class="caret"></span></button>
         				<ul role="menu" class="dropdown-menu">
-							<li><a href={% url 'users_view' object.username %}>Ver</a></li>
-							<li><a href="#">Suspender</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Eliminar</a>
+							<li><a href={% url 'profile' object.id %}>Ver</a></li>
+							<li><a href={% url 'profile' object.id %}>Editar</a></li>
+                     <li class="divider"></li>
+                     <li><a href={% url 'user_suspend' object.id %}>{% if object.is_active == True %}Suspender{% else %}Habilitar{% endif %}</a></li>
+							<li><a href={% url 'user_delete' object.id %}>Eliminar</a>
 							</li>
 						</ul>
 					</div>
@@ -59,15 +59,13 @@
          <div class="col-lg-10">
          	<nav>
          		<ul class="pagination">
-         			{% if users.has_previous %}<li><a href="?p={{ users.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>{% endif %}
-					{% for num in users.paginator.page_range %}
-					{% ifequal num users.number %}
-					<li class="active"><a>{{ num }}</a></li>
-					{% else %}
-					<li><a href="?p={{ num }}">{{ num }}</a></li>
-					{% endifequal %} 
-					{% endfor %}
-					{% if users.has_next %}<li><a href="?p={{ users.next_page_number }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>{% endif %}
+         		{% if page_obj.has_previous %}<li><a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">«</span></a></li>{% endif %}
+               {% for page in paginator.page_range %}
+               <li {% if page == page_obj.number %}class="active"{% endif %}>
+                  <a href="?page={{ page }}">{{ page }}</a>
+               </li>
+               {% endfor %}
+					{% if page_obj.has_next %}<li><a href="?page={{ page_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true">»</span></a></li>{% endif %}
                 </ul>
             </nav>
         </div>
@@ -84,5 +82,4 @@
 </div>
 </div>
 </div>
-{{ p.count }}
 {% endblock %}

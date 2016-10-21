@@ -6,10 +6,10 @@
       <div class="navbar-header">
          <a href="" class="navbar-brand">
             <div class="brand-logo">
-               <img class="img-responsive" src={% static "img/logo-dark.svg" %} alt="Codelab" width="110">
+               <img class="img-responsive" src={% static "img/tarento.png" %} alt="Logo" width="110">
             </div>
             <div class="brand-logo-collapsed">
-               <img class="img-responsive" src="" alt="" width="40">
+               <img class="img-responsive" src={% static "img/tarento_ico.png" %} alt="Favicon" width="40">
             </div>
          </a>
       </div>
@@ -128,59 +128,55 @@
                <span>Dashboard</span>
             </li>
             <li>
-               <a href="" title="Dashboard">
+               <a href="{% url 'home' %}" title="Dashboard">
                   <em class="icon-speedometer"></em>
                   <span>Dashboard</span>
                </a>
             </li>
             <li class=" ">
                <a href="#layout" title="Layouts" data-toggle="collapse">
-                  <em class="icon-notebook"></em>
-                  <span>Blog</span>
+                  <em class="icon-briefcase"></em>
+                  <span>Clientes</span>
                </a>
                <ul id="layout" class="nav sidebar-subnav collapse">
-                  <li class="sidebar-subnav-header">Ver Artículos</li>
+                  <li class="sidebar-subnav-header">Clientes</li>
                   <li class=" ">
-                     <a href="" title="Horizontal">
-                        <span>Nuevo Artículo</span>
+                     <a href="{% url 'clients_dashboard' %}" title="Horizontal">
+                        <span>Ver Clientes</span>
                      </a>
                   </li>
                   <li class=" ">
-                     <a href="" title="Horizontal">
-                        <span>Nuevo Artículo</span>
+                     <a href="{% url 'add_new_client' %}" title="Horizontal">
+                        <span>Nuevo Cliente</span>
+                     </a>
+                  </li>
+                  <li class=" ">
+                     <a href="{% url 'add_new_client' %}" title="Horizontal">
+                        <span>Parques Industriales</span>
+                     </a>
+                  </li>
+                  <li class=" ">
+                     <a href="{% url 'add_new_client' %}" title="Horizontal">
+                        <span>Calendario</span>
                      </a>
                   </li>
                </ul>
             </li>
             <li class="">
-               <a href="#dashboard" title="Dashboard" data-toggle="collapse">
+               <a href="#users" title="Dashboard" data-toggle="collapse">
                   <em class="icon-people"></em>
                   <span>Usuarios</span>
                </a>
-               <ul id="dashboard" class="nav sidebar-subnav collapse">
-                  <li class="sidebar-subnav-header">Dashboard</li>
+               <ul id="users" class="nav sidebar-subnav collapse">
+                  <li class="sidebar-subnav-header">Usuarios</li>
                   <li class=" ">
-                     <a href="" title="Ver Usuarios">
+                     <a href="{% url 'users' %}" title="Ver Usuarios">
                         <span>Ver Usuarios</span>
                      </a>
                   </li>
                   <li {% if url in request.path %}class="active"{% endif %}>
-                     <a href="" title="Nuevo Usuario">
+                     <a href="{% url 'user_new' %}" title="Nuevo Usuario">
                         <span>Nuevo Usuario</span>
-                     </a>
-                  </li>
-               </ul>
-            </li>
-            <li class=" ">
-               <a href="#layout" title="Layouts" data-toggle="collapse">
-                  <em class="icon-layers"></em>
-                  <span>Layouts</span>
-               </a>
-               <ul id="layout" class="nav sidebar-subnav collapse">
-                  <li class="sidebar-subnav-header">Layouts</li>
-                  <li class=" ">
-                     <a href="dashboard_h.html" title="Horizontal">
-                        <span>Horizontal</span>
                      </a>
                   </li>
                </ul>

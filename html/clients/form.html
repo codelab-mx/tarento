@@ -2,24 +2,167 @@
 {% block page.content %}
 
             <div class="panel panel-default">
-               <div class="panel-heading">* Requerido</div>
-               <div class="panel-body">
-                  <form id="example-vertical" action="" method="post">
-                  {% csrf_token %}
-                    <h4>Datos Generales</h4>
-                     <section>
-                     	
-                        {{ form_1.as_myp }}
 
-                        
-                     </section>
-                     <h4>Effects</h4>
+
+
+   <div class="panel-heading">* Requerido</div>
+               <div class="panel-body">
+               {% if form.errors %} <div role="alert" class="alert alert-danger">
+            <strong>Well done!</strong>You successfully read this important alert message.</div>
+
+{% endif %}
+            
+                  <form id="example-vertical" enctype="multipart/form-data" method="post">
+                  {% csrf_token %}
+                    <h4>Datos de la Empresa</h4>
                      <section>
-                        {{ form_2.as_p }}
+                        <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.NAME.label }}*</label>
+                              {{ form.NAME }}
+                              {{ form.NAME.errors }}
+                           </div>
+                           <div class="col-md-6 form-group"> 
+                              <label>{{ form.COMPANY.label }}</label>
+                              {{ form.COMPANY }}
+                              {{ form.COMPANY.errors }}
+                           </div>
+                        </div>
+
+                        <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.RFC.label }}</label>
+                              {{ form.RFC }}
+                              {{ form.RFC.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.PHONE.label }}*</label>
+                              {{ form.PHONE }}
+                              {{ form.PHONE.errors }}
+                           </div>
+                        </div>
+                           <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.TYPE.label }}*</label>
+                              {{ form.TYPE }}
+                              {{ form.TYPE.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.SOURCE.label }}*</label>
+                              {{ form.SOURCE }}
+                              {{ form.DATE_1 }}
+                              {{ form.SOURCE.errors }}
+                           </div>
+                        </div>
                      </section>
-                     <h4>Pager</h4>
+
+                     <h4>Contacto </h4>
+
                      <section>
-                        <p>The next and previous buttons help you to navigate through your content.</p>
+                        <div class="row">
+                           <div class="col-md-6 form-group"> 
+                              <label>{{ form.CONTACT_NAME_1.label }}*</label>
+                              {{ form.CONTACT_NAME_1 }}
+                              {{ form.CONTACT_NAME_1.errors }}
+                           </div>
+                           <div class="col-md-4 form-group">
+                              <label>{{ form.PHONE_1.label }}*</label>
+                              {{ form.PHONE_1 }}
+                              {{ form.PHONE_1.errors }}
+                           </div>
+                           <div class="col-md-2 form-group">
+                              <label>&nbsp;</label>
+                              {{ form.EXT_1 }}
+                              {{ form.EXT_1.errors }}
+                           </div>
+                        </div>
+               
+                        <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.MAIL_1.label }}*</label>
+                              {{ form.MAIL_1 }}
+                              {{ form.MAIL_1.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.CONTACT_NAME_2.label }}</label>
+                              {{ form.CONTACT_NAME_2 }}
+                              {{ form.CONTACT_NAME_2.errors }}
+                           </div>
+                        </div>
+                           <div class="row">
+                           <div class="col-md-4 form-group">
+                              <label>{{ form.PHONE_2.label }}</label>
+                              {{ form.PHONE_2 }}
+                              {{ form.PHONE_2.errors }} 
+                           </div>
+                           <div class="col-md-2 form-group">
+                              <label>&nbsp;</label>
+                              {{ form.EXT_2 }}
+                              {{ form.EXT_2.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.MAIL_2.label }}</label>
+                              {{ form.MAIL_2 }}
+                              {{ form.MAIL_2.errors }}
+                           </div>
+                        </div>
+                     </section>
+                     <h4>Dirección</h4>
+                     <section>
+                        <div class="row">
+                           <div class="col-md-6 form-group"> 
+                              <label>{{ form.STREET_NAME.label }}*</label>
+                              {{ form.STREET_NAME }}
+                              {{ form.STREET_NAME.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.NEIGHBORHOOD.label }}*</label>
+                              {{ form.NEIGHBORHOOD }}
+                              {{ form.NEIGHBORHOOD.errors }}
+                           </div>
+                        </div>
+
+                        <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.ZIP.label }}*</label>
+                              {{ form.ZIP }}
+                              {{ form.ZIP.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.CITY.label }}*</label>
+                              {{ form.CITY }}
+                              {{ form.CITY.errors }}
+                           </div>
+                        </div>
+                           <div class="row">
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.STATE.label }}*</label>
+                              {{ form.STATE }}
+                              {{ form.STATE.errors }}
+                           </div>
+                           <div class="col-md-6 form-group">
+                              <label>{{ form.IND_PARK.label }}</label>
+                              {{ form.IND_PARK }}
+                              {{ form.IND_PARK.errors }}
+                           </div>
+                        </div>
+                     </section>
+                     <h4>Información Adicional</h4>
+                     <section>
+                        <div class="row">
+                           <div class="form-group"> 
+                              
+                              {{ form.DESCRIPTION }}
+                              {{ form.DESCRIPTION.errors }}
+
+                           </div>
+                              <div class="col-md-6 form-group">
+                              <label>{{ form.IMAGE.label }}</label>
+                              {{ form.IMAGE }}
+                              {{ form.IMAGE.errors }}
+                           </div>
+                           
+                        </div>
                      </section>
 					<input type="hidden" name="next" value="{{ next }}" />
                   </form>
